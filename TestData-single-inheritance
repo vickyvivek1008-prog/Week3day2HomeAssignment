@@ -1,0 +1,43 @@
+package week3Day2HomeAssignments;
+
+class TestData
+{
+	void enterCredentials()
+	{
+		System.out.println("enter credentials :");
+	}
+	void navigateToHomePage() 
+	{
+		System.out.println("Navigating to home page ");
+	}
+	
+}
+class LoginTestData extends TestData
+{
+	void enterUsername() 
+	{
+		System.out.println("Enter username : vivek");
+	}
+	 void enterPassword()
+	   {
+		   System.out.println("enter password: 24662 ");
+	   }
+}
+public class Main {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		TestData td=new TestData();
+		td.enterCredentials();
+		td.navigateToHomePage();
+		
+		LoginTestData ltd=new LoginTestData();
+		ltd.enterCredentials();
+		ltd.enterPassword();
+		ltd.enterUsername();
+		ltd.navigateToHomePage();
+
+	}
+
+}
