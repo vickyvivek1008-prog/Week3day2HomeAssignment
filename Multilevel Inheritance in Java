@@ -1,0 +1,85 @@
+package week3Day2HomeAssignments;
+
+public class WebElement 
+{
+	 public void click() 
+	 {
+		 System.out.println("click the element");
+	 }
+	public void setText(String text)
+	{
+		System.out.println("Setting Text : "+text);
+	}
+	 class Button extends WebElement
+	{
+		public void submit()
+		{
+			System.out.println("click on submit button");
+		}
+	}
+	class TextField extends WebElement {
+	    private String text;
+
+	    @Override
+	    public void setText(String text) {
+	        this.text = text;
+	        System.out.println("TextField text set to: " + text);
+	    }
+
+	    public void getText() {
+	        System.out.println("get text" +text);
+	    }
+	}
+	
+	public class CheckBoxButton extends Button
+	{
+		void clickCheckButton()
+		{
+			System.out.println("Click on the check box ");
+		}
+	}
+	
+	public class RadioButton extends Button
+	{
+		void selectRadioButton()
+		{
+			System.out.println("Selecting a Radio button");
+		}
+	}
+	
+	
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		WebElement we=new WebElement();
+		we.click();
+		we.setText("dany");
+		
+		WebElement.Button btn = new WebElement().new Button();
+		btn.click();
+		
+		btn.setText("teee");
+		btn.submit();
+		
+		WebElement.TextField txt=new WebElement().new TextField();
+		txt.click();
+		txt.setText("tetet");
+		txt.getText();
+		
+		WebElement.Button .CheckBoxButton cbb=new WebElement().new Button().new CheckBoxButton();
+		cbb.click();
+		cbb.setText("vftwfdyw");
+		
+		cbb.clickCheckButton();
+		cbb.submit();
+		
+		WebElement.Button .RadioButton rbtn=new WebElement().new Button().new RadioButton();
+		
+		rbtn.click();
+		rbtn.setText("ttt");
+		rbtn.selectRadioButton();
+		rbtn.submit();
+
+	}
+
+}
