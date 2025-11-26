@@ -1,0 +1,102 @@
+package week3Day2HomeAssignments;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+public class EditLead {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		ChromeOptions options=new ChromeOptions();
+		options.addArguments("guest");
+
+		// Step1: Launch the Browser
+		ChromeDriver driver = new ChromeDriver(options);
+		//ChromeDriver driver = new ChromeDriver();
+		driver.get("http://leaftaps.com/opentaps/");
+		System.out.println(driver.getTitle());
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+		driver.findElement(By.id("username")).sendKeys("DemoSalesManager");
+		driver.findElement(By.name("PASSWORD")).sendKeys("crmsfa");
+		driver.findElement(By.className("decorativeSubmit")).click();
+
+		// Step7: Click the CRMSFA link
+		// driver.findElement(By.linkText("CRM/SFA")).click();
+		driver.findElement(By.partialLinkText("CRM")).click();
+
+		//Click on the Leads Button.
+		driver.findElement(By.xpath("//a[text()='Leads']")).click();
+		
+//		Click on Create Lead. 
+		
+		driver.findElement(By.xpath("//a[text()='Create Lead']")).click();
+		
+//		- Enter the CompanyName Field Using Xpath. 
+		
+		driver.findElement(By.xpath("//input[@id='createLeadForm_companyName']")).sendKeys("HCLTECH");
+		
+		
+//		- Enter the FirstName Field Using Xpath. 
+		driver.findElement(By.xpath("//input[@id='createLeadForm_firstName']")).sendKeys("Vivek");
+		
+//		- Enter the LastName Field Using Xpath.
+		
+		driver.findElement(By.xpath("//input[@id='createLeadForm_lastName']")).sendKeys("Testing");
+		
+//		- Enter the FirstName (Local) Field Using Xpath. 
+		
+		driver.findElement(By.xpath("//input[@id='createLeadForm_firstNameLocal']")).sendKeys("vivek");
+		
+//		- Enter the Department Field Using any Locator of Your Choice. 
+		driver.findElement(By.id("createLeadForm_departmentName")).sendKeys("Testing");
+		
+//		- Enter the Description Field Using any Locator of your choice. 
+		
+		driver.findElement(By.id("createLeadForm_description")).sendKeys("Testing lead");
+		
+//		- Enter your email in the E-mail address Field using the locator of your choice.
+		
+		driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys("Test7773@gmail.com");
+		
+//		- Select State/Province as NewYork Using Visible Text. 
+		WebElement element = driver.findElement(By.id("createLeadForm_generalStateProvinceGeoId"));
+	 	Select State =new Select(element);
+	 	State.selectByVisibleText("New York");
+	 	
+//		- Click on the Create Button. 
+	 	
+	 	driver.findElement(By.name("submitButton")).click();
+	 	
+//		- Click on the edit button. 
+	 	
+	 	driver.findElement(By.xpath("//div[@class='frameSectionExtra']//a[contains(text(),'Edit')]")).click();
+	 	
+//		- Clear the Description Field. 
+	 	driver.findElement(By.id("updateLeadForm_description")).clear();
+	 	
+//		- Fill the Important Note Field with Any text. 
+	 	
+	 	driver.findElement(By.id("updateLeadForm_importantNote")).sendKeys("Important lead");
+	 	
+//		- Click on the update button. 
+	 	
+	 	driver.findElement(By.className("smallSubmit")).click();
+	 	
+//		- Get the Title of the Resulting Page.  
+	 	System.out.println(driver.getTitle());
+
+	 	//		- Close the browser window. 
+	 	driver.close();
+
+
+
+	}
+
+}
