@@ -1,0 +1,84 @@
+package week3Day2HomeAssignments;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+
+public class DeleteLead {
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		ChromeOptions options=new ChromeOptions();
+		options.addArguments("guest");
+
+		// Step1: Launch the Browser
+		ChromeDriver driver = new ChromeDriver(options);
+		//ChromeDriver driver = new ChromeDriver();
+		driver.get("http://leaftaps.com/opentaps/");
+		System.out.println(driver.getTitle());
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.findElement(By.id("username")).sendKeys("DemoSalesManager");
+		driver.findElement(By.name("PASSWORD")).sendKeys("crmsfa");
+		driver.findElement(By.className("decorativeSubmit")).click();
+
+		// Step7: Click the CRMSFA link
+		// driver.findElement(By.linkText("CRM/SFA")).click();
+		driver.findElement(By.partialLinkText("CRM")).click();
+
+		//Click on the Leads Button.
+		driver.findElement(By.xpath("//a[text()='Leads']")).click();
+		
+//		 - Click "Find leads." 
+		driver.findElement(By.linkText("Find Leads")).click();
+		
+//		 - Click on the "Phone" tab. 
+		driver.findElement(By.xpath("//span[text()='Phone']")).click();
+		
+//		 - Enter the phone number.  
+		driver.findElement(By.name("phoneNumber")).sendKeys("7227895332");
+		
+//		 - Click the "Find leads" button.
+		
+		driver.findElement(By.xpath("//button[text()='Find Leads']")).click();
+//		 - Capture the lead ID of the first resulting lead.
+		
+        WebElement firstLead = driver.findElement(By.xpath("//a[text()='10562']"));
+        String leadID = firstLead.getText();
+        System.out.println("Captured Lead ID: " + leadID);
+        
+		
+//		 - Click the first resulting lead.
+        driver.findElement(By.xpath("//a[text()='10562']")).click();
+        
+//		 - Click the "Delete" button.
+        driver.findElement(By.xpath("//a[text()='Delete']")).click();
+        
+//		 - Click "Find leads" again. 
+    	driver.findElement(By.linkText("Find Leads")).click();
+        
+//		 - Enter the captured lead ID. 
+        driver.findElement(By.xpath("//input[@name='id']")).sendKeys("10562");
+        
+//		 - Click the "Find leads" button. 
+        driver.findElement(By.xpath("//button[text()='Find Leads']")).click();
+
+//		 - Verify the presence of the message "No records to display" in the Lead List. This message confirms the successful deletion.
+        WebElement d = driver.findElement(By.xpath("//div[text()='No records to display']"));
+        String display = d.getText();
+        System.out.println("display message :" + display);
+        
+ 
+//		 - Close the browser. 
+        driver.close();
+        
+		
+
+	}
+
+}
